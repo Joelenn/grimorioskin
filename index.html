@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grimorio Skin | K-Beauty Rituals</title>
+    <meta name="description" content="Skincare coreano como rituales. Grimorio Skin en Bogotá.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --dark-bg: #0f0f12;
+            --dark-card: #1a1a22;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --purple: #5a2d52;
+            --purple-light: #8b4d7c;
+            --purple-dark: #2d1b3d;
+            --silver: #c0c0c0;
+            --gray-300: #4a4a4a;
+            --gray-200: #2a2a2a;
+            --white: #f5f5f5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--purple-dark) 50%, var(--dark-bg) 100%);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 77, 124, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow-subtle {
+            0%, 100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+        }
+
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 18, 0.7);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--gold), var(--silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--gold), var(--purple-light));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            color: var(--white);
+        }
+
+        .cart-icon:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-nav {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 60px;
+            background: linear-gradient(180deg, rgba(10, 10, 18, 0.5) 0%, rgba(45, 27, 61, 0.4) 100%);
+            text-align: center;
+            animation: fade-in 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 70%, rgba(139, 77, 124, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            animation: glow-subtle 3s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--purple-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--gray-300);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: 1.5px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 700;
+            border-radius: 6px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-alt {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .btn-alt::before {
+            background: transparent;
+        }
+
+        .btn-alt:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* ===== SECCIÓN INTRO ===== */
+        .intro-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--purple-dark) 100%);
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .intro-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 2rem;
+            color: var(--gold);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .intro-section p {
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.05rem;
+            color: var(--gray-300);
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .intro-highlight {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        /* ===== SECCIÓN KITS ===== */
+        .kits-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--purple-dark) 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .section-header p {
+            color: var(--gray-300);
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .kits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+
+        .kit-card {
+            background: linear-gradient(135deg, rgba(26, 26, 34, 0.6) 0%, rgba(45, 27, 61, 0.4) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 12px;
+            padding: 2.5rem;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .kit-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .kit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(212, 175, 55, 0.15);
+            border-color: var(--gold);
+        }
+
+        .kit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: subtle-float 4s ease-in-out infinite;
+        }
+
+        .kit-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .kit-description {
+            color: var(--gray-300);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-weight: 300;
+            flex-grow: 1;
+        }
+
+        .kit-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .kit-features li {
+            color: var(--gray-300);
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            padding-left: 1.2rem;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .kit-features li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        .kit-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .kit-price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            font-weight: 800;
+        }
+
+        .kit-availability {
+            font-size: 0.75rem;
+            color: var(--purple-light);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== SECCIÓN PRODUCTOS ===== */
+        .products-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--purple-dark) 0%, var(--dark-bg) 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 3rem auto 0;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, rgba(26, 26, 34, 0.6) 0%, rgba(45, 27, 61, 0.3) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 12px;
+            padding: 1.8rem;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(212, 175, 55, 0.15);
+            border-color: var(--gold);
+        }
+
+        .product-image-thumb {
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .product-type {
+            font-size: 0.8rem;
+            color: var(--purple-light);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .product-description {
+            color: var(--gray-300);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            font-weight: 300;
+        }
+
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            gap: 1rem;
+        }
+
+        .product-availability {
+            font-size: 0.7rem;
+            color: var(--purple-light);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .product-price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            font-weight: 800;
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 26, 34, 0.95) 0%, rgba(45, 27, 61, 0.6) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 0;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-gallery {
+            position: relative;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-image-container {
+            width: 100%;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .modal-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: fade-in 0.3s ease;
+        }
+
+        .modal-gallery-controls {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .modal-gallery-btn {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-gallery-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .modal-thumbnails {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-thumbnail {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-thumbnail.active {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: var(--gold-light);
+            transform: rotate(90deg);
+        }
+
+        .modal-info {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .modal h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-type {
+            font-size: 0.85rem;
+            color: var(--purple-light);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal p {
+            color: var(--gray-300);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            font-weight: 300;
+            white-space: pre-line;
+        }
+
+        .modal-price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            font-weight: 800;
+            margin: 1.5rem 0;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-availability {
+            font-size: 0.9rem;
+            color: var(--purple-light);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .quantity-selector label {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .quantity-display {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-weight: 700;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .modal-button {
+            flex: 1;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .modal-button-secondary {
+            background: transparent;
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .modal-button-secondary:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* ===== CART SIDEBAR ===== */
+        .cart-sidebar {
+            position: fixed;
+            right: -450px;
+            top: 0;
+            width: 450px;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(26, 26, 34, 0.95) 0%, rgba(45, 27, 61, 0.6) 100%);
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 999;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(20px);
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 2rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-close:hover {
+            color: var(--gold-light);
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .cart-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .cart-item-qty {
+            color: var(--gray-300);
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .cart-item-price {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .cart-item-remove {
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-remove:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .cart-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-300);
+        }
+
+        .cart-empty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .cart-summary {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .cart-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: var(--gray-300);
+            font-size: 0.95rem;
+        }
+
+        .cart-summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-checkout {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            border: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .cart-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cart-checkout:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .cart-continue {
+            width: 100%;
+            padding: 0.8rem;
+            background: transparent;
+            color: var(--gold);
+            border: 1.5px solid var(--gold);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .cart-continue:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--black) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid var(--gold);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: var(--gold);
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding-top: 1.5rem;
+            color: var(--gray-300);
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 0.9rem 1.5rem;
+            }
+
+            .kits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .modal-content {
+                grid-template-columns: 1fr;
+                max-height: 95vh;
+            }
+
+            .modal-gallery {
+                padding: 1.5rem;
+            }
+
+            .modal-info {
+                padding: 1.5rem;
+            }
+
+            .modal-image-container {
+                height: 300px;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .intro-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">🔮 GRIMORIO SKIN</div>
+        <nav>
+            <a href="#kits">Kits</a>
+            <a href="#productos">Productos</a>
+            <a href="#contacto">Contacto</a>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛍️
+                <span class="cart-badge" id="cart-count">0</span>
+            </div>
+            <button class="btn-nav" onclick="scrollToSection('contacto')">Pedir</button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">✨ Skincare Premium ✨</div>
+            <h1>GRIMORIO SKIN</h1>
+            <p class="hero-description">K-Beauty coreano convertido en rituales. Cada producto es un paso en tu grimorio diario de protección, poder y transformación. Entregado en Bogotá.</p>
+            <div class="hero-buttons">
+                <button class="btn" onclick="scrollToSection('kits')">Explorar Rituales</button>
+                <button class="btn btn-alt" onclick="scrollToSection('contacto')">Contactar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro-section">
+        <h2>Cada paso es un hechizo</h2>
+        <p>No vendemos skincare común. Convertimos K-Beauty en <span class="intro-highlight">rituales reales</span>, en actos de magia propia donde cada aplicación es intencional y transformadora.</p>
+        <p style="font-size: 0.95rem; color: var(--gray-300); margin-top: 1rem;">Traemos lo más innovador de Corea del Sur con la ambientación que tu piel merece. Calidad verificada. Poder real.</p>
+    </section>
+
+    <!-- KITS -->
+    <section class="kits-section" id="kits">
+        <div class="section-header">
+            <h2>Kits Edición Limitada</h2>
+            <p>Rituales completos y potentes</p>
+        </div>
+        <div class="kits-grid" id="kits-grid"></div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section class="products-section" id="productos">
+        <div class="section-header">
+            <h2>Productos Disponibles</h2>
+            <p>Selecciona tu ritual diario</p>
+        </div>
+        <div class="products-grid" id="products-grid"></div>
+    </section>
+
+    <!-- MODAL PRODUCTO -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            
+            <div class="modal-gallery">
+                <div class="modal-image-container">
+                    <img id="modal-main-image" src="" alt="Producto">
+                </div>
+                <div class="modal-gallery-controls">
+                    <button class="modal-gallery-btn" onclick="prevImage()">❮</button>
+                    <button class="modal-gallery-btn" onclick="nextImage()">❯</button>
+                </div>
+                <div class="modal-thumbnails" id="modal-thumbnails"></div>
+            </div>
+
+            <div class="modal-info">
+                <div>
+                    <h2 id="modal-product-name"></h2>
+                    <p class="modal-type" id="modal-product-type"></p>
+                    <p id="modal-product-details"></p>
+                    <div class="modal-price" id="modal-product-price"></div>
+                    <p class="modal-availability" id="modal-product-availability"></p>
+                </div>
+
+                <div>
+                    <div class="quantity-selector">
+                        <label>Cantidad:</label>
+                        <div class="quantity-buttons">
+                            <button class="quantity-btn" onclick="decreaseQuantity()">−</button>
+                            <div class="quantity-display" id="quantity-display">1</div>
+                            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button class="modal-button" onclick="addToCart()">Agregar a la Bolsa</button>
+                        <button class="modal-button modal-button-secondary" onclick="orderProduct()">Pedir por DM</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Grimorio 🔮</h2>
+            <button class="cart-close" onclick="toggleCart()">✕</button>
+        </div>
+        
+        <div class="cart-items" id="cart-items-container">
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛍️</div>
+                <p>Tu bolsa está vacía. Comienza tu ritual.</p>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <div class="cart-summary-row">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$0</span>
+            </div>
+            <div class="cart-summary-row">
+                <span>Envío:</span>
+                <span id="cart-shipping">Desde $8.000</span>
+            </div>
+            <div class="cart-summary-total">
+                <span>Total:</span>
+                <span id="cart-total">$0</span>
+            </div>
+            <button class="cart-checkout" id="cart-checkout-btn" onclick="checkoutCart()" disabled>Proceder con Compra</button>
+            <button class="cart-continue" onclick="toggleCart()">Seguir Comprando</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>📍 UBICACIÓN</h3>
+                <p>Bogotá, Colombia</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--purple-light);">Envío gratis desde $150.000</p>
+            </div>
+            <div class="footer-section">
+                <h3>📱 CONTACTO</h3>
+                <p>DM directo en Instagram</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--purple-light);">Respuesta en 24h 🔮</p>
+            </div>
+            <div class="footer-section">
+                <h3>🌙 SÍGUENOS</h3>
+                <div class="social-links">
+                    <a href="https://instagram.com/grimorioskin" target="_blank" title="Instagram">📷</a>
+                    <a href="#" title="TikTok">🎬</a>
+                    <a href="https://wa.me/573001234567" target="_blank" title="WhatsApp">💬</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 GRIMORIO SKIN. K-Beauty Rituals. Poder en Bogotá.</p>
+        </div>
+    </footer>
+
+    <script>
+        const kits = [
+            {
+                id: 1,
+                name: 'Kit Piel Limpia',
+                type: 'Edición Única',
+                icon: '✨',
+                price: '$189.900',
+                priceNumber: 189900,
+                availability: 'Edición Única',
+                badge: 'ÚNICA',
+                description: 'Rito de purificación completo',
+                features: [
+                    'Aceite limpiador 200ml',
+                    'Espuma de centella 125ml',
+                    'Clay Stick Mask 1x',
+                    'Ritual 3 pasos',
+                ],
+                images: [],
+                details: 'El rito de purificación completo — edición única.\n\nIncluye:\n• Aceite limpiador (disuelve maquillaje y bloqueador)\n• Espuma de centella (limpieza profunda sin deshidratar)\n• Clay Stick Mask (arcilla que limpia en 5 minutos)\n\nValor separado: $209.800\nKit Piel Limpia: $189.900\n\nEdición única. Una sola disponible.'
+            },
+            {
+                id: 2,
+                name: 'Kit Ritual Diario',
+                type: 'Stock Limitado',
+                icon: '☀️',
+                price: '$184.900',
+                priceNumber: 184900,
+                availability: 'Máx 3 disponibles',
+                badge: 'STOCK',
+                description: 'Protección día, sanación noche',
+                features: [
+                    'Sun Serum caja doble',
+                    'Spot Cover Patch',
+                    '4 meses de protección',
+                    'Ritual completo',
+                ],
+                images: [],
+                details: 'El ritual día completo.\n\nIncluye:\n• Caja doble Sun Serum SPF50+ (2 tubos × 50ml = 4 meses)\n• Sobre Spot Cover Patch (22 parches para brotes)\n\nMañana: Escudo solar sin residuo\nNoche: Parche que trabaja mientras duermes\n\nValor separado: $194.800\nKit Ritual Diario: $184.900\n\nMáximo 3 disponibles.'
+            }
+        ];
+
+        const products = [
+            {
+                id: 101,
+                name: 'Sun Serum — tubo individual',
+                type: 'Protector solar suelto',
+                icon: '☀️',
+                price: '$89.900',
+                priceNumber: 89900,
+                availability: '6 unidades disponibles',
+                description: 'Protector solar SPF 50+',
+                images: ['img/skin1004individualhyalucicawater.jpg', 'img/skin1004hyalucicawater2.jpg', 'img/skin1004hyalucicawater3.jpg'],
+                details: '🌙 El escudo que ningún sol puede romper\n\nEl Hyalu-Cica Sun Serum de SKIN1004 es el ritual obligatorio de la mañana.\nSPF 50+ · Sin residuo blanco · Textura de sérum que se funde con la piel ✨\n\n🌿 Centella Asiática — calma y fortalece la barrera\n💧 Ácido hialurónico — hidratación duradera\n☀️ Protección UVA/UVB real, sin poros tapados\n\nEl último paso de tu grimorio matutino 🔮\nTu piel protegida. Tu hechizo completo.'
+            },
+            {
+                id: 102,
+                name: 'Sun Serum — caja doble (2 tubos)',
+                type: 'Caja con 2 tubos',
+                icon: '🌙',
+                price: '$169.900',
+                priceNumber: 169900,
+                availability: '3 cajas disponibles',
+                description: 'Pack de 2 tubos',
+                images: ['img/skin1004duohyalucicawater.jpg', 'img/skin1004hyalucicawater2.jpg', 'img/skin1004hyalucicawater3.jpg'],
+                details: '✨ ¿Ya conoces el Sun Serum del Grimorio?\n\nAhora disponible en caja doble — 2 tubos de 50ml para ti o para regalar 🌙\n\nSi lo usas todos los días (como deberías 🔮), un tubo dura ~2 meses.\nLa caja doble te da 4 meses de escudo solar sagrado.\n\n2 tubos Hyalu-Cica Water-Fit Sun Serum SPF50+\nValor individual: $179.800\nCaja doble Grimorio: $169.900 🧿\n\nSolo 3 cajas disponibles.'
+            },
+            {
+                id: 103,
+                name: 'Double Cleansing Duo — set completo',
+                type: 'Aceite 200ml + Espuma 125ml',
+                icon: '🧿',
+                price: '$129.900',
+                priceNumber: 129900,
+                availability: '2 sets disponibles',
+                description: 'Limpieza en dos pasos',
+                images: ['img/doublecleansingduo1.jpg', 'img/doublecleansingduo2.jpg', 'img/doublecleansingduo3.jpg'],
+                details: '🕯️ Dos pasos. Un ritual. Piel sin impurezas.\n\nLa doble limpieza coreana no es un paso más — es el rito que lo cambia todo 🌙\n\nEl aceite disuelve el maquillaje, el bloqueador y las impurezas del día ✨\nLa espuma de centella limpia en profundidad sin robar la hidratación 🌿\n\n¿El resultado? Piel que respira. Poros limpios. Barrera intacta.\n\nIncluye los dos en un solo set:\n→ Centella Light Cleansing Oil 200ml\n→ Centella Ampoule Foam 125ml\n\nTu grimorio nocturno empieza aquí 🔮'
+            },
+            {
+                id: 104,
+                name: 'Clay Stick Mask — mascarilla en barra',
+                type: 'Mascarilla en barra',
+                icon: '🧼',
+                price: '$79.900',
+                priceNumber: 79900,
+                availability: '1 unidad disponible',
+                description: 'Arcilla purificante',
+                images: ['img/poremizing1.jpg', 'img/poremizing2.jpg'],
+                details: '🧙‍♀️ La arcilla que convoca piel limpia\n\nCinco tipos de arcilla. Un ritual de 5 minutos. Poros que desaparecen 🔮\n\nDeslízala. Espera. Enjuaga.\nSin desorden. Sin manchas. Sin drama.\n\n✨ Kaolín + bentonita + illita absorben el exceso de sebo\n🌿 Centella Asiática calma mientras purifica\n🫧 Polvo de frijol rojo exfolia suave — adiós puntos negros\n\nÚsala 1-2 veces por semana como parte de tu rito nocturno 🌑\n\n⚠️ Solo queda 1 unidad disponible'
+            },
+            {
+                id: 105,
+                name: 'Spot Cover Patch — parches anti-brote',
+                type: '5 sobres × 22 parches',
+                icon: '🩹',
+                price: '$24.900 c/sobre',
+                priceNumber: 24900,
+                availability: 'En stock',
+                description: 'Parches anti-brote',
+                images: ['img/spotcoverpath1.jpg', 'img/spotcoverpath2.jpg', 'img/spotcoverpath3.jpg'],
+                details: '🩹 El amuleto que desaparece el granito overnight\n\nCuando el brote aparece sin avisar, tú ya tienes un plan 🧿\n\nLos Spot Cover Patch de SKIN1004:\n✨ Ultrafinos — invisibles bajo el maquillaje\n💧 Hidrocoloide — absorben la inflamación mientras duermes\n🛡️ Protegen de bacterias y de tus propios dedos\n\nPonlo antes de dormir. Despierta con el granito seco 🌙\nMagia coreana real ✨\n\n22 parches por sobre · 2 tamaños para todo tipo de brote'
+            },
+            {
+                id: 106,
+                name: 'Toning Toner Mini — par de frascos',
+                type: '2 frascos mini',
+                icon: '🌿',
+                price: '$39.900 el par',
+                priceNumber: 39900,
+                availability: '1 par disponible',
+                description: 'Exfoliante suave',
+                images: ['img/toningtonnermini1.jpg', 'img/toningtonnermini2.jpg'],
+                details: '🌿 El elixir que afina la piel sin quemarla\n\n¿Le tienes miedo a los ácidos? Este tónico es el inicio perfecto 🌙\n\nPHA — el exfoliante más gentil que existe. No pica. No irrita. Solo afina.\n\n✨ Equilibra el pH después de limpiar\n🌿 84% Centella Asiática — calma todo\n💧 Ácido hialurónico — hidrata mientras exfolia\n\nViene en par de 2 frascos mini — ideal para conocer el ritual antes del tamaño completo 🔮\n\n⚠️ Solo 1 par disponible'
+            }
+        ];
+
+        let currentProduct = null;
+        let currentImageIndex = 0;
+        let currentQuantity = 1;
+        let cart = [];
+
+        // ===== CARGAR CARRITO DESDE LOCALSTORAGE =====
+        function loadCart() {
+            const saved = localStorage.getItem('grimorioCart');
+            if (saved) {
+                cart = JSON.parse(saved);
+                updateCartUI();
+            }
+        }
+
+        // ===== GUARDAR CARRITO EN LOCALSTORAGE =====
+        function saveCart() {
+            localStorage.setItem('grimorioCart', JSON.stringify(cart));
+        }
+
+        // ===== RENDER KITS =====
+        function renderKits() {
+            const grid = document.getElementById('kits-grid');
+            grid.innerHTML = kits.map(kit => `
+                <div class="kit-card" onclick="openModal(${kit.id}, true)">
+                    <div class="kit-badge">${kit.badge}</div>
+                    <div style="text-align: center;">
+                        <div class="kit-icon">${kit.icon}</div>
+                        <h3 class="kit-name">${kit.name}</h3>
+                        <p class="kit-description">${kit.description}</p>
+                        <ul class="kit-features">
+                            ${kit.features.map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="kit-footer">
+                        <div class="kit-price">${kit.price}</div>
+                        <div class="kit-availability">${kit.availability}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== RENDER PRODUCTOS =====
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = products.map(product => `
+                <div class="product-card" onclick="openModal(${product.id}, false)">
+                    ${product.images.length > 0 ? `
+                        <div class="product-image-thumb">
+                            <img src="${product.images[0]}" alt="${product.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23333%22 width=%22200%22 height=%22200%22/%3E%3C/svg%3E'">
+                        </div>
+                    ` : ''}
+                    <div>
+                        <div class="product-icon">${product.icon}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-type">${product.type}</p>
+                        <p class="product-description">${product.description}</p>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-availability">${product.availability}</span>
+                        <span class="product-price">${product.price}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== ABRIR MODAL =====
+        function openModal(id, isKit) {
+            const data = isKit ? kits.find(k => k.id === id) : products.find(p => p.id === id);
+            currentProduct = data;
+            currentImageIndex = 0;
+            currentQuantity = 1;
+
+            document.getElementById('modal-product-name').textContent = data.name;
+            document.getElementById('modal-product-type').textContent = data.type;
+            document.getElementById('modal-product-details').textContent = data.details;
+            document.getElementById('modal-product-price').textContent = data.price;
+            document.getElementById('modal-product-availability').textContent = `Disponibilidad: ${data.availability}`;
+            document.getElementById('quantity-display').textContent = '1';
+
+            if (data.images && data.images.length > 0) {
+                document.getElementById('modal-main-image').src = data.images[0];
+                renderThumbnails();
+                document.querySelector('.modal-gallery').style.display = 'flex';
+            } else {
+                document.querySelector('.modal-gallery').style.display = 'none';
+            }
+
+            document.getElementById('product-modal').classList.add('active');
+        }
+
+        // ===== RENDER MINIATURAS =====
+        function renderThumbnails() {
+            const container = document.getElementById('modal-thumbnails');
+            container.innerHTML = currentProduct.images.map((img, idx) => `
+                <div class="modal-thumbnail ${idx === currentImageIndex ? 'active' : ''}" onclick="selectImage(${idx})">
+                    <img src="${img}" alt="Thumbnail" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Crect fill=%22%23333%22 width=%2260%22 height=%2260%22/%3E%3C/svg%3E'">
+                </div>
+            `).join('');
+        }
+
+        // ===== SELECCIONAR IMAGEN =====
+        function selectImage(idx) {
+            currentImageIndex = idx;
+            document.getElementById('modal-main-image').src = currentProduct.images[idx];
+            renderThumbnails();
+        }
+
+        // ===== NAVEGAR IMÁGENES =====
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentProduct.images.length;
+            selectImage(currentImageIndex);
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentProduct.images.length) % currentProduct.images.length;
+            selectImage(currentImageIndex);
+        }
+
+        // ===== CANTIDAD =====
+        function increaseQuantity() {
+            currentQuantity++;
+            document.getElementById('quantity-display').textContent = currentQuantity;
+        }
+
+        function decreaseQuantity() {
+            if (currentQuantity > 1) {
+                currentQuantity--;
+                document.getElementById('quantity-display').textContent = currentQuantity;
+            }
+        }
+
+        // ===== AGREGAR AL CARRITO =====
+        function addToCart() {
+            const item = {
+                id: currentProduct.id + '-' + Date.now(),
+                ...currentProduct,
+                quantity: currentQuantity,
+                addedAt: new Date()
+            };
+            cart.push(item);
+            saveCart();
+            updateCartUI();
+            alert(`✨ ${currentProduct.name} (x${currentQuantity}) añadido a tu Grimorio\n\nTotal en tu bolsa: ${cart.length} producto(s)`);
+            closeModal();
+        }
+
+        // ===== PEDIR POR DM =====
+        function orderProduct() {
+            const message = `Hola! Quisiera pedir: ${currentProduct.name} (cantidad: ${currentQuantity}). Precio: ${currentProduct.price}`;
+            const encodedMessage = encodeURIComponent(message);
+            const igUrl = `https://instagram.com/direct/t/grimorioskin`;
+            window.open(igUrl, '_blank');
+            closeModal();
+        }
+
+        // ===== CERRAR MODAL =====
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('active');
+            currentProduct = null;
+            currentImageIndex = 0;
+            currentQuantity = 1;
+        }
+
+        // ===== ACTUALIZAR UI CARRITO =====
+        function updateCartUI() {
+            const count = cart.length;
+            document.getElementById('cart-count').textContent = count;
+
+            const container = document.getElementById('cart-items-container');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon">🛍️</div>
+                        <p>Tu bolsa está vacía. Comienza tu ritual.</p>
+                    </div>
+                `;
+                document.getElementById('cart-checkout-btn').disabled = true;
+            } else {
+                container.innerHTML = cart.map((item, idx) => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-qty">Cantidad: ${item.quantity}</div>
+                            <div class="cart-item-price">${item.price}</div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${idx})">✕</button>
+                    </div>
+                `).join('');
+                document.getElementById('cart-checkout-btn').disabled = false;
+            }
+
+            updateCartSummary();
+        }
+
+        // ===== ELIMINAR DEL CARRITO =====
+        function removeFromCart(idx) {
+            cart.splice(idx, 1);
+            saveCart();
+            updateCartUI();
+        }
+
+        // ===== ACTUALIZAR RESUMEN =====
+        function updateCartSummary() {
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.priceNumber * item.quantity;
+            });
+
+            const shipping = subtotal >= 150000 ? 0 : 8000;
+            const total = subtotal + shipping;
+
+            document.getElementById('cart-subtotal').textContent = '$' + subtotal.toLocaleString('es-CO');
+            document.getElementById('cart-shipping').textContent = shipping === 0 ? '¡Gratis!' : '$' + shipping.toLocaleString('es-CO');
+            document.getElementById('cart-total').textContent = '$' + total.toLocaleString('es-CO');
+        }
+
+        // ===== TOGGLE CARRITO =====
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('active');
+        }
+
+        // ===== PROCESAR COMPRA =====
+        function checkoutCart() {
+            let subtotal = 0;
+            let message = '🔮 PEDIDO GRIMORIO SKIN 🔮\n\n';
+
+            cart.forEach((item, idx) => {
+                const total = item.priceNumber * item.quantity;
+                subtotal += total;
+                message += `${idx + 1}. ${item.name} (x${item.quantity}) - $${total.toLocaleString('es-CO')}\n`;
+            });
+
+            const shipping = subtotal >= 150000 ? 0 : 8000;
+            const total = subtotal + shipping;
+
+            message += `\n━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `Subtotal: $${subtotal.toLocaleString('es-CO')}\n`;
+            message += `Envío: ${shipping === 0 ? '¡GRATIS!' : '$' + shipping.toLocaleString('es-CO')}\n`;
+            message += `TOTAL: $${total.toLocaleString('es-CO')}\n\n`;
+            message += `📍 Ubicación: Bogotá, Colombia\n`;
+            message += `💫 Listo para procesar tu orden`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const igUrl = `https://instagram.com/direct/t/grimorioskin?text=${encodedMessage}`;
+            
+            // Abrir Instagram DM
+            window.open(`https://instagram.com/grimorioskin`, '_blank');
+
+            // Mostrar mensaje de confirmación
+            alert(`✨ Tu pedido está listo!\n\n${message}\n\nSerás redirigido a Instagram para completar tu compra.`);
+
+            // Limpiar carrito
+            cart = [];
+            saveCart();
+            updateCartUI();
+            toggleCart();
+        }
+
+        // ===== SCROLL =====
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ===== TECLAS =====
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('product-modal').classList.contains('active')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft' && currentProduct?.images?.length) prevImage();
+                if (e.key === 'ArrowRight' && currentProduct?.images?.length) nextImage();
+            }
+        });
+
+        // ===== INIT =====
+        document.addEventListener('DOMContentLoaded', () => {
+            renderKits();
+            renderProducts();
+            loadCart();
+        });
+    </script>
+
+</body>
+</html>
