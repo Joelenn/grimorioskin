@@ -1351,7 +1351,7 @@
                 <span>Total:</span>
                 <span id="cart-total">$0</span>
             </div>
-            <button class="cart-checkout" id="cart-checkout-btn" onclick="checkoutCart()" disabled>Proceder con Compra</button>
+            <button class="cart-checkout" id="cart-checkout-btn" onclick="checkoutCart()" disabled>🔮 Invocar Elementos</button>
             <button class="cart-continue" onclick="toggleCart()">Seguir Comprando</button>
         </div>
     </div>
@@ -1366,7 +1366,7 @@
             </div>
             <div class="footer-section">
                 <h3>📱 CONTACTO</h3>
-                <p>DM directo en Instagram</p>
+                <p>WhatsApp Business</p>
                 <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--purple-light);">Respuesta en 24h 🔮</p>
             </div>
             <div class="footer-section">
@@ -1374,7 +1374,7 @@
                 <div class="social-links">
                     <a href="https://instagram.com/grimorioskin" target="_blank" title="Instagram">📷</a>
                     <a href="#" title="TikTok">🎬</a>
-                    <a href="https://wa.me/573001234567" target="_blank" title="WhatsApp">💬</a>
+                    <a href="https://wa.me/573008661977" target="_blank" title="WhatsApp">💬</a>
                 </div>
             </div>
         </div>
@@ -1722,35 +1722,35 @@
             document.getElementById('cart-sidebar').classList.toggle('active');
         }
 
-        // ===== PROCESAR COMPRA =====
+        // ===== PROCESAR COMPRA EN WHATSAPP =====
         function checkoutCart() {
-            let subtotal = 0;
-            let message = '🔮 PEDIDO GRIMORIO SKIN 🔮\n\n';
+            let message = '🔮 Grimorio Skin — Pedido del Aquelarre 🔮\n\n';
+            message += 'Hola, acabo de invocar estos ingredientes desde tu caldero digital y quiero que lleguen a mis manos ✨\n\n';
+            message += 'Mis elecciones rituales:\n';
 
+            let subtotal = 0;
             cart.forEach((item, idx) => {
-                const total = item.priceNumber * item.quantity;
-                subtotal += total;
-                message += `${idx + 1}. ${item.name} (x${item.quantity}) - $${total.toLocaleString('es-CO')}\n`;
+                const itemTotal = item.priceNumber * item.quantity;
+                subtotal += itemTotal;
+                message += `🌿 ${item.name} (x${item.quantity}) — $${itemTotal.toLocaleString('es-CO')}\n`;
             });
 
             const shipping = subtotal >= 150000 ? 0 : 8000;
             const total = subtotal + shipping;
 
-            message += `\n━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `\n━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
             message += `Subtotal: $${subtotal.toLocaleString('es-CO')}\n`;
             message += `Envío: ${shipping === 0 ? '¡GRATIS!' : '$' + shipping.toLocaleString('es-CO')}\n`;
-            message += `TOTAL: $${total.toLocaleString('es-CO')}\n\n`;
+            message += `TOTAL INVOCADO: $${total.toLocaleString('es-CO')}\n\n`;
             message += `📍 Ubicación: Bogotá, Colombia\n`;
-            message += `💫 Listo para procesar tu orden`;
+            message += `💫 Estoy lista para recibir mi caldero de hechizos\n\n`;
+            message += `🔮 Que la magia llegue a mis manos ✨`;
 
             const encodedMessage = encodeURIComponent(message);
-            const igUrl = `https://instagram.com/direct/t/grimorioskin?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/573008661977?text=${encodedMessage}`;
             
-            // Abrir Instagram DM
-            window.open(`https://instagram.com/grimorioskin`, '_blank');
-
-            // Mostrar mensaje de confirmación
-            alert(`✨ Tu pedido está listo!\n\n${message}\n\nSerás redirigido a Instagram para completar tu compra.`);
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
 
             // Limpiar carrito
             cart = [];
